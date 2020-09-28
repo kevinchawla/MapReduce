@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -A uot165 
+#SBATCH --job-name="averagesalary.local"
+#SBATCH --output="averagesalary.local.out"
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --export=ALL 
+#SBATCH --time=10
+
+module load hadoop/2.6.0
+export JAVA_HOME=/lib/jvm/java
+rm -rf output
+hadoop --config $HOME jar AverageSalary.jar AverageSalary input output-avg-local
